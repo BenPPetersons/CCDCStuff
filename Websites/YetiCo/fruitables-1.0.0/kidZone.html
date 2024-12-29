@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catch the Yeti!</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #f5deb3;
+        }
+        canvas {
+            border: 2px solid brown;
+            background: #fff5ee;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="nav-item nav-link">Home</a>
+    <canvas id="game" width="800" height="600"></canvas>
+    <script>
+        const canvas = document.getElementById('game');
+        const ctx = canvas.getContext('2d');
+
+        // Load the Yeti image
+        const YetiImage = new Image();
+        YetiImage.src = 'images/yeti_clipart.png'; // Replace this with the path to your Yeti PNG
+
+        const Yeti = {x: Math.random() * 760, y: Math.random() * 560, size: 60};
+        let score = 0;
+        let fileDownloaded = false; // Prevent multiple downloads
+
+        function drawYeti() {
+            ctx.drawImage(YetiImage, Yeti.x, Yeti.y, Yeti.size, Yeti.size);
+        }
+
+        function updateYeti() {
+            Yeti.x = Math.random() * (canvas.width - Yeti.size);
+            Yeti.y = Math.random() * (canvas.height - Yeti.size);
+        }
+
+        function checkClick(e) {
+            const rect = canvas.getBoundingClientRect();
+            const mouseX = e.clientX - rect.left;
+            const mouseY = e.clientY - rect.top;
+
+            if (mouseX >= Yeti.x && mouseX <= Yeti.x + Yeti.size &&
+                mouseY >= Yeti.y && mouseY <= Yeti.y + Yeti.size) {
+                score++;
+                updateYeti();
+
+                // Trigger file download at score 7
+                if (score === 7 && !fileDownloaded) {
+                    fileDownloaded = true; // Ensure this only happens once
+                    downloadFile();
+                }
+            }
+        }
+
+        function drawScore() {
+            ctx.fillStyle = 'black';
+            ctx.font = '20px Arial';
+            ctx.fillText(`Score: ${score}`, 10, 30);
+        }
+
+        function downloadFile() {
+            const link = document.createElement('a');
+            link.href = 'images/yeti_classic.csv'; 
+            link.download = 'yeti_classic.csv'; 
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        function gameLoop() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawYeti();
+            drawScore();
+        }
+
+        canvas.addEventListener('click', checkClick);
+
+        // Wait for the image to load before starting the game loop
+        YetiImage.onload = () => {
+            setInterval(gameLoop, 100);
+        };
+    </script>
+</body>
+</html>
