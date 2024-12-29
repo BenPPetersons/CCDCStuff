@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YetiCo Internal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #b3c3f5;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            text-align: center;
+            background-color: #7e95fe;
+            padding: 20px;
+            margin: 0;
+        }
+        nav {
+            background-color: #4a47ff;
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            margin: 0 15px;
+            color: white;
+            text-decoration: none;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .content {
+            padding: 20px;
+            margin: 20px;
+        }
+        .folder {
+            margin-bottom: 20px;
+        }
+        .folder h2 {
+            background-color: #7276fa;
+            padding: 10px;
+        }
+        .folder a {
+            display: block;
+            padding: 5px;
+            color: #040100;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>YetiCo Internal Website</h1>
+    <nav>
+        <a href="#Administrative">Administrative</a>
+        <a href="#Yetis">Yetis</a>
+        <a href="#Employees">Employees</a>
+    </nav>
+
+    <div class="content">
+        <div id="Administrative" class="folder">
+            <h2>Administrative</h2>
+            <a href="Administrative/onboarding.txt" target="_blank">Onboarding</a>
+            <a href="Administrative/Dates.txt" target="_blank">Important Dates</a>
+        </div>
+
+        <div id="Yetis" class="folder">
+            <h2>Yetis</h2>
+            <a href="Yetis/health.txt" target="_blank">Health Liability</a>
+            <a href="Yetis/foodstuffs.csv" target="_blank">Food Catalog</a>
+        </div>
+
+        <div id="Employees" class="folder">
+            <h2>Employees</h2>
+            <a href="Employees/info.txt" target="_blank">Facts of the Day</a>
+            <a href="Employees/good.txt" target="_blank">Employee of the Month</a>
+        </div>
+    </div>
+
+</body>
+</html>
